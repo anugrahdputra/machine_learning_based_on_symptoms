@@ -13,11 +13,9 @@
     <meta name="author" content="" />
     <link
       rel="icon"
-      href="{{ url_for('static', filename='icon/search_corona.ico') }}"
+      href="{{ url_for('static', filename='icon/search_covid19.ico') }}"
     />
-
     <title>{% block title %}{% endblock title %} COVID-19 Detector</title>
-
     <!-- Latest compiled and minified CSS -->
     <link
       rel="stylesheet"
@@ -25,14 +23,12 @@
       integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY"
       crossorigin="anonymous"
     />
-
     <!-- Some extra styles (remove if not needed) -->
     <style>
       section {
         padding: 70px 0;
         border-bottom: 1px dotted #ccc;
       }
-
       /* So that we can see the grid */
       .grid-example div[class^='col'] {
         border: 1px solid white;
@@ -47,7 +43,6 @@
       }
     </style>
   </head>
-
   <body data-spy="scroll" data-target="#navbar-example">
     <nav
       id="topNav"
@@ -75,9 +70,7 @@
         </div>
       </div>
     </nav>
-
     {% block jumbotron %}{% endblock jumbotron %}
-
     <div class="container">
       {% block content %}{% endblock content %}
       <footer>
@@ -95,28 +88,24 @@
       integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
       crossorigin="anonymous"
     ></script>
-
     <!-- Tether -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"
       integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
       crossorigin="anonymous"
     ></script>
-
     <!-- Latest compiled JavaScript -->
     <script
       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"
       integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD"
       crossorigin="anonymous"
     ></script>
-
     <!-- Initialize Bootstrap functionality -->
     <script>
       // Initialize tooltip component
       $(function () {
         $('[data-toggle="tooltip"]').tooltip();
       });
-
       // Initialize popover component
       $(function () {
         $('[data-toggle="popover"]').popover();

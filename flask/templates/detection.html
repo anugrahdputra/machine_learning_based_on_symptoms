@@ -2,7 +2,6 @@
 <section id="grid">
   <h2>{% block title %}Details of #{{ detection.id }}{% endblock title %}</h2>
   <br />
-
   <div class="grid-example">
     <div class="row">
       {% if detection.infected == 1 %}
@@ -17,7 +16,7 @@
     <tbody>
       <tr>
         <th class="text-nowrap" scope="row">Name</th>
-        <td>{{ detection.title }}</td>
+        <td>{{ detection.fullname }}</td>
       </tr>
       <tr>
         <th class="text-nowrap" scope="row">Age</th>

@@ -7,7 +7,7 @@ with open('schema.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO detections (title, fever, bodypain, age, runnynose, diffbreath, infected) VALUES (?, ?, ?, ?, ?, ?, ?)",
+cur.execute("INSERT INTO detections (fullname, fever, bodypain, age, runnynose, diffbreath, infected) VALUES (?, ?, ?, ?, ?, ?, ?)",
             ("Harry Potter", 99.32986249, 0, 26, 1, -1, 0)
             )
 

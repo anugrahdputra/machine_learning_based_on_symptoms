@@ -10,8 +10,9 @@ def get_db_connection():
 
 def get_detection(detection_id):
     conn = get_db_connection()
-    detection = conn.execute('SELECT * FROM detections WHERE id = ?',
-                        (detection_id,)).fetchone()
+    detection = conn.execute(
+        'SELECT * FROM detections WHERE id = ?', (detection_id,)
+        ).fetchone()
     conn.close()
     if detection is None:
         abort(404)
@@ -19,7 +20,7 @@ def get_detection(detection_id):
 
 def model_predict(model, data):
     results = model.predict([data])
-    if(results[0] == 1):
+    if results[0] == 1:
         return 1
     return 0
 
@@ -41,31 +42,26 @@ def detection(detection_id):
 @app.route('/create', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
-        title = request.form['title']
+        fullname = request.form['fullname']
         fever = (float(request.form['fever']) * 1.8000) +32.00
         bodypain = request.form['bodypain']
         age = request.form['age']
         runnynose = request.form['runnynose']
         diffbreath = request.form['diffbreath']
 
-        if not title:
-            flash('Title is required!')
-        else:
-            model = pickle.load(open("../machine_learning/model.pkl", 'rb'))
-            newdata = [fever, bodypain, age, runnynose, diffbreath]
-            res = model_predict(model, newdata)
+        model = pickle.load(open("../machine_learning/model.pkl", 'rb'))
+        newdata = [fever, bodypain, age, runnynose, diffbreath]
+        res = model_predict(model, newdata)
 
-            conn = get_db_connection()
-            conn.execute("INSERT INTO detections (title, fever, bodypain, age, runnynose, diffbreath, infected) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            (title, fever, bodypain, age, runnynose, diffbreath, res))
-            
-
-            conn.commit()
-            conn.close()
-            return redirect(url_for('index'))
+        conn = get_db_connection()
+        conn.execute("INSERT INTO detections (fullname, fever, bodypain, age, runnynose, diffbreath, infected) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        (fullname, fever, bodypain, age, runnynose, diffbreath, res))
+        
+        conn.commit()
+        conn.close()
+        return redirect(url_for('index'))
 
     return render_template('create.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
-    
