@@ -18,9 +18,9 @@ def get_detection(detection_id):
         abort(404)
     return detection
 
-def model_predict(model, data):
-    results = model.predict([data])
-    if results[0] == 1:
+def model_predict(model, newdata):
+    results = model.predict([newdata])
+    if int(results[0]) == 1:
         return 1
     return 0
 
@@ -39,23 +39,35 @@ def detection(detection_id):
     detection = get_detection(detection_id)
     return render_template('detection.html', detection=detection)
 
-@app.route('/create', methods=('GET', 'POST'))
+@app.route('/detector', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
         fullname = request.form['fullname']
-        fever = (float(request.form['fever']) * 1.8000) +32.00
-        bodypain = request.form['bodypain']
         age = request.form['age']
-        runnynose = request.form['runnynose']
-        diffbreath = request.form['diffbreath']
-
+        cough = request.form['cough']
+        fever = request.form['fever']
+        sore_throat = request.form['sore_throat']
+        shortness_of_breath = request.form['shortness_of_breath']
+        head_ache = request.form['head_ache']
+        if (int(age) - 60) >= 0:
+            age_60_and_above = 1
+        else:
+            age_60_and_above = 0
+        gender = request.form['gender']
+        test_indication = request.form['test_indication']
+        
         model = pickle.load(open("../machine_learning/model.pkl", 'rb'))
-        newdata = [fever, bodypain, age, runnynose, diffbreath]
-        res = model_predict(model, newdata)
+        newdata = [cough, fever, sore_throat, shortness_of_breath, head_ache, age_60_and_above, gender, test_indication]
+        corona_result = model_predict(model, newdata)
 
         conn = get_db_connection()
-        conn.execute("INSERT INTO detections (fullname, fever, bodypain, age, runnynose, diffbreath, infected) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (fullname, fever, bodypain, age, runnynose, diffbreath, res))
+        conn.execute(
+            "INSERT INTO detections (fullname, age, cough, fever, sore_throat, shortness_of_breath, \
+            head_ache, corona_result, age_60_and_above, gender, test_indication) \
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (fullname, age, cough, fever, sore_throat, shortness_of_breath, 
+            head_ache, corona_result, age_60_and_above, gender, test_indication)
+        )
         
         conn.commit()
         conn.close()

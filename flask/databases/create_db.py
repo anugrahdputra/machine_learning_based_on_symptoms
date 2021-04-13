@@ -7,9 +7,11 @@ with open('schema.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO detections (fullname, fever, bodypain, age, runnynose, diffbreath, infected) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            ("Harry Potter", 99.32986249, 0, 26, 1, -1, 0)
-            )
+cur.execute("INSERT INTO detections (fullname, age, cough, fever, sore_throat, shortness_of_breath, \
+    head_ache, corona_result, age_60_and_above, gender, test_indication) \
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    ("Harry Potter", 25, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+)
 
 connection.commit()
 connection.close()
