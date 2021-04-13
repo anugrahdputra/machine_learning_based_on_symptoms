@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS detections;
+
+CREATE TABLE detections (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    title TEXT NOT NULL,
+    fever FLOAT NOT NULL,
+    bodypain INTEGER NOT NULL,
+    age INTEGER NOT NULL,
+    runnynose INTEGER NOT NULL,
+    diffbreath INTEGER NOT NULL,
+    infected INTEGER NOT NULL
+);

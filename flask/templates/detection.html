@@ -1,0 +1,63 @@
+{% extends 'base.html' %}{% block content %}
+<section id="grid">
+  <h2>{% block title %}Details of #{{ detection.id }}{% endblock title %}</h2>
+  <br />
+
+  <div class="grid-example">
+    <div class="row">
+      {% if detection.infected == 1 %}
+      <div class="col-sm-12 bg-danger">Possibly Positive for COVID-19</div>
+      {% else %}
+      <div class="col-sm-12 bg-success">Possibly Negative for COVID-19</div>
+      {% endif %}
+    </div>
+  </div>
+  <br />
+  <table class="table table-bordered table-striped">
+    <tbody>
+      <tr>
+        <th class="text-nowrap" scope="row">Name</th>
+        <td>{{ detection.title }}</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Age</th>
+        <td>{{ detection.age }}</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Temperature</th>
+        <td>{{ '%0.2f' % ((detection.fever - 32) / 1.8000) | float }}°C</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Body Pain</th>
+        {% if detection.bodypain == 1 %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Flu</th>
+        {% if detection.runnynose == 1 %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Breath Rate</th>
+        {% if detection.diffbreath == 1 %}
+        <td>Breathe normally</td>
+        {% elif detection.diffbreath == -1 %}
+        <td>Difficult to breathe</td>
+        {% else %}
+        <td>A little difficult to breathe</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Created</th>
+        <td>{{ detection.created }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+{% endblock %}
