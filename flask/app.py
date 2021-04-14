@@ -2,6 +2,7 @@ import pickle
 import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
+from flask import jsonify
 
 def get_db_connection():
     conn = sqlite3.connect('databases/sqlite.db')
@@ -34,6 +35,10 @@ def index():
     conn.close()
     return render_template('index.html', detections=detections)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/<int:detection_id>')
 def detection(detection_id):
     detection = get_detection(detection_id)
@@ -49,7 +54,7 @@ def create():
         sore_throat = request.form['sore_throat']
         shortness_of_breath = request.form['shortness_of_breath']
         head_ache = request.form['head_ache']
-        if (int(age) - 60) >= 0:
+        if int(age) >= 60:
             age_60_and_above = 1
         else:
             age_60_and_above = 0
@@ -70,10 +75,19 @@ def create():
         )
         
         conn.commit()
+
+        detection = conn.execute(
+            'SELECT id FROM detections ORDER BY id DESC LIMIT 1'
+        ).fetchone()
+        
         conn.close()
-        return redirect(url_for('index'))
+
+        if detection is None:
+            return 'Whoops ID is Not Found'
+
+        return redirect(url_for('detection', detection_id=detection[0]))
 
     return render_template('create.html')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run('0.0.0.0', 5000, debug=True)
