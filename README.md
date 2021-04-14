@@ -8,4 +8,4 @@ About
 
 This work is part of Python Professional Academy - Program [Digital Talent Scholarship 2021](https://digitalent.kominfo.go.id) Final Project
 
-This work was developed based on the research results from [Machine learning-based prediction of COVID-19 diagnosis based on symptoms](https://www.nature.com/articles/s41746-020-00372-6) as well as open data access from [https://github.com/nshomron/covidpred/tree/master/data](this).
+This work was developed based on the research results from [Machine learning-based prediction of COVID-19 diagnosis based on symptoms](https://www.nature.com/articles/s41746-020-00372-6) as well as open data access from [this](https://github.com/nshomron/covidpred/tree/master/data).
