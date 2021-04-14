@@ -13,7 +13,7 @@
         <meta name="author" content="" />
         <link
             rel="icon"
-            href="{{ url_for('static', filename='icon/search_covid19.ico') }}"
+            href="{{ url_for('static', filename='icons/search_covid19.ico') }}"
         />
         <title>{% block title %}{% endblock title %} COVID-19 Detector</title>
         <!-- Latest compiled and minified CSS -->
@@ -24,7 +24,10 @@
             crossorigin="anonymous"
         />
         <!-- Some extra styles (remove if not needed) -->
-        <link rel="stylesheet" href="https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css">
+        <link
+            rel="stylesheet"
+            href="https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css"
+        />
         <style>
             section {
                 padding: 70px 0;
@@ -65,12 +68,14 @@
                 >
                     <ul class="nav navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('about')}}">About</a>
+                            <a class="nav-link" href="{{ url_for('about')}}">
+                                About
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('create')}}"
-                                >Try Detector</a
-                            >
+                            <a class="nav-link" href="{{url_for('create')}}">
+                                Detector
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -81,7 +86,13 @@
             {% block content %}{% endblock content %}
             <footer>
                 <br />
-                <p>&copy; 2021, <strong>The T Team Python Professional Academy - Program Digital Talent Scholarship 2021</strong></p>
+                <p>
+                    &copy; 2021
+                    <strong>
+                        The T Team "Python Professional Academy - Program
+                        Digital Talent Scholarship 2021"
+                    </strong>
+                </p>
             </footer>
         </div>
         <!-- Bootstrap core JavaScript
