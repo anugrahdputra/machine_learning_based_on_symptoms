@@ -1,97 +1,93 @@
 {% extends 'base.html' %} {% block content %}
 <section id="grid">
-    <h2>{% block title %}Details of #{{ detection.id }}{% endblock title %}</h2>
-    <br />
-    <br />
-    <div class="grid-example">
-        <div class="row">
-            {% if detection.corona_result == 1 %}
-            <div class="col-sm-12 bg-danger">
-                Possibly Positive for COVID-19
-            </div>
-            {% else %}
-            <div class="col-sm-12 bg-success">
-                Possibly Negative for COVID-19
-            </div>
-            {% endif %}
-        </div>
+  <h2>{% block title %}Details of #{{ detection.id }}{% endblock title %}</h2>
+  <br />
+  <br />
+  <div class="grid-example">
+    <div class="row">
+      {% if detection.corona_result == 1 %}
+      <div class="col-sm-12 bg-danger">Possibly Positive for COVID-19</div>
+      {% else %}
+      <div class="col-sm-12 bg-success">Possibly Negative for COVID-19</div>
+      {% endif %}
     </div>
-    <br />
-    <table class="table table-bordered table-striped">
-        <tbody>
-            <tr>
-                <th class="text-nowrap" scope="row">Name</th>
-                <td>{{ detection.fullname }}</td>
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Age</th>
-                <td>{{ detection.age }}</td>
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Cough</th>
-                {% if detection.cough == 1 %}
-                <td>Yes</td>
-                {% else %}
-                <td>No</td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Fever</th>
-                {% if detection.fever == 1 %}
-                <td>Yes</td>
-                {% else %}
-                <td>No</td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Sore Throat</th>
-                {% if detection.sore_throat == 1 %}
-                <td>Yes</td>
-                {% else %}
-                <td>No</td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Shortness of Breath</th>
-                {% if detection.shortness_of_breath == 1 %}
-                <td>Yes</td>
-                {% else %}
-                <td>No</td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Headache</th>
-                {% if detection.head_ache == 1 %}
-                <td>Yes</td>
-                {% else %}
-                <td>No</td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Gender</th>
-                {% if detection.gender == 1 %}
-                <td>Male</td>
-                {% elif detection.gender == 0 %}
-                <td>Female</td>
-                {% else %}
-                <td>Not Mentioned</td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Additional Information</th>
-                {% if detection.test_indication == 1 %}
-                <td>Abroad</td>
-                {% elif detection.test_indication == 0 %}
-                <td>Contact With Confirmed COVID-19</td>
-                {% else %}
-                <td>-</td>
-                {% endif %}
-            </tr>
-            <tr>
-                <th class="text-nowrap" scope="row">Created</th>
-                <td>{{ detection.created }}</td>
-            </tr>
-        </tbody>
-    </table>
+  </div>
+  <br />
+  <table class="table table-bordered table-striped">
+    <tbody>
+      <tr>
+        <th class="text-nowrap" scope="row">Name</th>
+        <td>{{ detection.fullname }}</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Age</th>
+        <td>{{ detection.age }}</td>
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Cough</th>
+        {% if detection.cough == 1 %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Fever</th>
+        {% if detection.fever == 1 %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Sore Throat</th>
+        {% if detection.sore_throat == 1 %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Shortness of Breath</th>
+        {% if detection.shortness_of_breath == 1 %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Headache</th>
+        {% if detection.head_ache == 1 %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Gender</th>
+        {% if detection.gender == 1 %}
+        <td>Male</td>
+        {% elif detection.gender == 0 %}
+        <td>Female</td>
+        {% else %}
+        <td>Not Mentioned</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Additional Information</th>
+        {% if detection.test_indication == 1 %}
+        <td>Abroad</td>
+        {% elif detection.test_indication == 0 %}
+        <td>Contact With Confirmed COVID-19</td>
+        {% else %}
+        <td>-</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th class="text-nowrap" scope="row">Created</th>
+        <td>{{ detection.created }}</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 {% endblock %}
