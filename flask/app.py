@@ -26,7 +26,6 @@ def model_predict(model, newdata):
     return 0
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'the_t_team'
 
 @app.route('/')
 def index():
@@ -83,7 +82,8 @@ def create():
         conn.close()
 
         if detection is None:
-            return 'Whoops ID is Not Found'
+            # return 'Whoops ID is Not Found'
+            abort(404)
 
         return redirect(url_for('detection', detection_id=detection[0]))
 
